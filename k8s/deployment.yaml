@@ -1,0 +1,62 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    deployment: bunsen
+  name: bunsen
+  namespace: community-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: bunsen
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        deployment: bunsen
+    spec:
+      containers:
+      - name: bunsen
+        image: gcr.io/puppetlabs.com/api-project-531226060619/bunsen:latest
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /status
+            port: 8080
+          initialDelaySeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /status
+            port: 8080
+          initialDelaySeconds: 10
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        env:
+        - name: HUBOT_SLACK_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: bunsen-slack-token
+              key: slack-token
+        - name: HUBOT_BRAIN_DIR
+          value: /home/hubot/state
+        volumeMounts:
+        - mountPath: /home/hubot/state
+          name: bunsen-state
+      securityContext:
+        runAsUser: 501
+        runAsGroup: 501
+        fsGroup: 501
+      imagePullSecrets:
+      - name: regcred
+      restartPolicy: Always
+      volumes:
+      - name: bunsen-state
+        persistentVolumeClaim:
+          claimName: bunsen-brain
