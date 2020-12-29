@@ -22,8 +22,12 @@ module.exports = (robot) ->
       robot.adapter.client.web.reactions.add('stopwatch', {channel: msg.message.room, timestamp: msg.message.id})
       robot.logger.warning "Restart triggered by #{msg.message.user.slack.real_name} (@#{msg.message.user.slack.name})"
 
-      #Exit the process (Relies on a process monitor to restart)
-      process.exit 0
+      # Wait a moment to let any pending messages, etc finish up
+      setTimeout () ->
+        #Exit the process (Relies on a process monitor to restart)
+        process.exit 0
+      , 2000
+
 
   robot.router.get '/status', (req, res) ->
     robot.logger.debug "Status check"
