@@ -37,6 +37,5 @@ end
 desc "Upload image to GCE"
 task 'docker:push' do
   system("docker tag puppetlabs/bunsen gcr.io/puppetlabs.com/api-project-531226060619/bunsen")
-  system("docker push gcr.io/puppetlabs.com/api-project-531226060619/bunsen:#{version}")
   system("docker push gcr.io/puppetlabs.com/api-project-531226060619/bunsen:latest")
 end

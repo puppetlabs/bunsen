@@ -42,8 +42,13 @@ spec:
         - name: HUBOT_SLACK_TOKEN
           valueFrom:
             secretKeyRef:
-              name: bunsen-slack-token
+              name: bunsen-secrets
               key: slack-token
+        - name: SLACK_SIGNING_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: bunsen-secrets
+              key: slack-signing-secret
         - name: HUBOT_BRAIN_DIR
           value: /home/hubot/state
         volumeMounts:
