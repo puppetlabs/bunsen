@@ -8,7 +8,7 @@
 #   None
 #
 # Commands:
-#   None
+#   forge search <query> - Links the top module results from the Forge
 #
 # Notes:
 #   None
@@ -20,7 +20,7 @@ base_url     = "https://forge.puppet.com"
 query_url    = "https://forgeapi.puppet.com/v3/modules"
 query_params = "hide_deprecated=true&limit=3&module_groups=base pe_only&query"
 slug_regex   = /\b(\w+)[-\/](\w+)\b/
-search_regex = /forge search (.*)/
+search_regex = /^forge search (.*)/
 
 module.exports = (robot) ->
 
