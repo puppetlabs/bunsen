@@ -2,7 +2,7 @@
 #    Bot administration utilities.
 #
 # Commands:
-#    restart - just kills the bot process so that k8s can recycle a new one (admin only)
+#    hubot restart - just kills the bot process so that k8s can recycle a new one (admin only)
 #
 # URLS:
 #    GET /status - Status check used for k8s readiness probe

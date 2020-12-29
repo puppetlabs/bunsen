@@ -2,7 +2,7 @@
 #    Onboard new users by presenting them with a welcome message and rooms according to their interests.
 #
 # Commands:
-#    welcome - Starts the welcome wizard.
+#    hubot welcome - Starts the welcome wizard.
 #
 # Author:
 #   binford2k
@@ -12,7 +12,7 @@
 module.exports = (robot) ->
 
   robot.respond /welcome/i, (msg) ->
-    msg.send "Hello there"
+    robot.adapter.client.web.reactions.add('wave', {channel: msg.message.room, timestamp: msg.message.id})
     msg.send({
       "text": "Would you like to play a game?",
       "attachments": [
@@ -54,6 +54,5 @@ module.exports = (robot) ->
     })
 
   robot.setActionHandler 'welcome_wizard', (payload, respond) =>
-    robot.logger payload
 
     return 'Glad you could join us.'
