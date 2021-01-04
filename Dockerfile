@@ -27,7 +27,7 @@ COPY scripts/* /home/hubot/scripts/
 COPY external-scripts.json /home/hubot
 
 # Add any npm scripts to install here
-RUN npm install --save clark @slack/interactive-messages
+RUN npm install --save clark @slack/interactive-messages cron
 
 EXPOSE 80
 
