@@ -1,12 +1,6 @@
 # Description:
 #   Automatically post Puppet Forge links when module names are seen
 #
-# Dependencies:
-#   None
-#
-# Configuration:
-#   None
-#
 # Commands:
 #   forge search <query> - Links the top module results from the Forge
 #

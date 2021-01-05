@@ -29,12 +29,12 @@ spec:
           httpGet:
             path: /status
             port: 8080
-          initialDelaySeconds: 10
+          initialDelaySeconds: 12
         readinessProbe:
           httpGet:
             path: /status
             port: 8080
-          initialDelaySeconds: 10
+          initialDelaySeconds: 12
         ports:
         - containerPort: 8080
           protocol: TCP
@@ -49,6 +49,11 @@ spec:
             secretKeyRef:
               name: bunsen-secrets
               key: slack-signing-secret
+        - name: GOOGLE_CALENDAR_APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: bunsen-secrets
+              key: google-calendar-apikey
         - name: HUBOT_BRAIN_DIR
           value: /home/hubot/state
         volumeMounts:
