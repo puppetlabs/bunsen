@@ -29,12 +29,8 @@ spec:
           httpGet:
             path: /status
             port: 8080
-          initialDelaySeconds: 12
-        readinessProbe:
-          httpGet:
-            path: /status
-            port: 8080
-          initialDelaySeconds: 12
+          initialDelaySeconds: 10
+          timeoutSeconds: 2
         ports:
         - containerPort: 8080
           protocol: TCP
