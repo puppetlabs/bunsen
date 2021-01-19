@@ -29,7 +29,7 @@ module.exports = (robot) ->
   timeLink = (dt) ->
     timestamp = dt.toISOString().replace(/[-:Z]|(.000)/g,'')
     # the p1,2,3 elements are locations. Modify the list by adding locations via the web and observing the URL changes
-    "https://www.timeanddate.com/worldclock/converter.html?iso=#{timestamp}&p1=202&p2=919&p3=307&p4=3332&p5=236&p6=240"
+    "https://www.timeanddate.com/worldclock/converter.html?iso=#{timestamp}&p1=202&p2=179&p3=919&p4=307&p5=3332&p6=236&p7=240"
 
   emoji = ->
     items = [
