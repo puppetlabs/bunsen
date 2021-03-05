@@ -1,6 +1,6 @@
 ---
-apiVersion: extensions/v1beta1
-kind: Deployment
+apiVersion: apps/v1
+kind: StatefulSet
 metadata:
   labels:
     deployment: bunsen
@@ -11,11 +11,7 @@ spec:
   selector:
     matchLabels:
       deployment: bunsen
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-    type: RollingUpdate
+  serviceName: bunsen
   template:
     metadata:
       labels:
@@ -29,7 +25,7 @@ spec:
           httpGet:
             path: /status
             port: 8080
-          initialDelaySeconds: 10
+          initialDelaySeconds: 12
           timeoutSeconds: 2
         ports:
         - containerPort: 8080
