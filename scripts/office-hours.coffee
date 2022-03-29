@@ -109,7 +109,7 @@ module.exports = (robot) ->
     setSessionTimeout event
   , 0, 1
 
-  registerJob '0 45 * * * *', ->
+  registerJob '0 15,45 * * * *', ->
     robot.logger.info "Checking for upcoming Office Hours..."
     getUpcomingSession (event) ->
       robot.logger.info " ↳ posting event info"
