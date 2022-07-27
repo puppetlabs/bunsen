@@ -193,6 +193,7 @@ module.exports = (robot) ->
     neg_grouped_regex = ///
       (                               # Group 1.
         (                             # Group 2.
+          \w                          # Don't match a name on the previous line (fixes code blocks)
           (                           # Group 3.
             @(\S+[^+:\s])\s           # Group 4. Someone's name followed by a space
             |(\S+[^+:\s])             # Group 5. A single word not followed by a space, :, or +
