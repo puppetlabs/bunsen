@@ -24,6 +24,7 @@ blacklist = [
   /^(lib)?stdc$/
   /-{2,}/
   /^[rwx-]+$/
+  /```/
 ]
 
 class Karma
