@@ -24,10 +24,16 @@ You can also *write* a custom script.
 ### Building and testing
 
 * Build the image with `rake docker:build`.
+* You'll need some environment variables in a file named `env.dev`. You'll need to
+  generate your own secrets:
+    * `HUBOT_SLACK_TOKEN=<...>`
+    * `SLACK_SIGNING_SECRET=<...>`
+    * `GOOGLE_CALENDAR_APIKEY=<...>`
+    * `HUBOT_BRAIN_DIR=/home/hubot/state`
 * Run the bot locally for testing with `rake docker:run`. This will drop you into
   a shell bot simulator where you can "direct message" with the bot.
 * If you need filesystem access, you can run the image directly:
-    * `docker run -it puppetlabs/bunsen /bin/sh`
+    * `docker run --env-file env.dev -it puppetlabs/bunsen /bin/sh`
     * Start the shell with `bin/hubot`
 
 ### Publishing
