@@ -26,12 +26,12 @@ desc "Build Docker image"
 task 'docker:build' do
   system("docker build --no-cache=true -t puppetlabs/bunsen:#{version} -t puppetlabs/bunsen:latest .")
   puts 'Start container manually with: docker run -it puppetlabs/bunsen'
-  puts 'Or rake docker::run'
+  puts 'Or rake docker:run'
 end
 
 desc "Run Bunsen image locally for debugging"
-task 'docker::run' do
-  `docker run -it puppetlabs/bunsen`
+task 'docker:run' do
+  `docker run --env-file env.dev -it puppetlabs/bunsen`
 end
 
 desc "Upload image to GCE"
