@@ -20,10 +20,11 @@
 #
 # Category: social
 
-blacklist = [
+ignorelist = [
   /^(lib)?stdc$/
   /-{2,}/
   /^[rwx-]+$/
+  /```/
 ]
 
 class Karma
@@ -110,7 +111,7 @@ mention_name = (robot, user) ->
   robot.brain.data.users[user.id].slack.profile.display_name
 
 filtered = (subject) ->
-    blacklist.some (re) ->
+    ignorelist.some (re) ->
       subject.match re
 
 normalizeSubject = (subject) ->
